@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/result.dart';
 
 import './quiz.dart';
+import './result.dart';
 
 void main() => runApp(MyApp());
 
@@ -52,8 +54,8 @@ class _MyAppState extends State<MyApp>{
           ),
           body: _questionIndex < _questions.length
               ? Quiz(answerQuestion: _answerQuestion,questionIndex: _questionIndex,questions: _questions,)
-              : Center(child: Text("We have no more questions!"))
+              : Result()
       )
-    )
+    );
   }
 }
