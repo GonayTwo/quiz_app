@@ -7,7 +7,8 @@ class Quiz extends StatelessWidget {
   //const Quiz({Key key}) : super(key: key);
   final List<Map<String, Object>> questions;
   final int questionIndex;
-  final VoidCallback answerQuestion;
+  final Function answerQuestion; // Caso fique com VoidCallback no lugar de Function,
+                                    // gera erro de tipo de função no arquivo main e outro erro no quiz.dart
 
   Quiz({
     required this.questions,
@@ -21,9 +22,8 @@ class Quiz extends StatelessWidget {
         Question(
             questions[questionIndex]['questionText'] as String
         ),
-        ...(questions[questionIndex]['answers'] as List<String>).map((answer){
-
-          return Answer(answerQuestion, answer);
+        ...(questions[questionIndex]['answers'] as List<Map<String,Object>>).map((answer){
+          return Answer(() => answerQuestion(answer['score']), answer['text'] as String );
         }).toList()
 
       ],
